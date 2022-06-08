@@ -93,8 +93,10 @@ int	main(void)
 	// int i;
 	// char	*I;
 
-	// i = ft_printf("%% %x %X %c %s %p %d %i %u %D", 4);
-	ft_printf("abc_{%d}_def_{%c}_ghi", 4, 'a');
+	// i = ft_printf("%% %x %X %c %s %p %d %i %u %D", 'a', "bc", "bc", 4, 4, 4);
+	// d c i % -> u -> x, X -> s -> p
+	ft_printf("abc %% %i def %c ghi\n", 6, 't' + 256);
+	printf("abc %% %i def %c ghi\n", 6, 't' + 256);
 	// I = ft_itoa(i);
 	// ft_putendl_fd(I, 1);
 	// free(I);
@@ -102,6 +104,6 @@ int	main(void)
 	//printf("{%%} - {%d} - {% d} - {%-d} - {%-10d} - {%10d}", 3, 3, 3, 3, 3);
 	// printf("\n");
 	// soma(2, 2, 3);
-	testwhitslpit();
+	// testwhitslpit();
 	return (0);
 }

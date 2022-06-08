@@ -53,6 +53,22 @@ int	ft_printf(const char *template, ...)
 	return (1);
 }
 */
+void	ft_replace_placeholder(int ph, va_list items)
+{
+	char	*temp;
+
+	temp = NULL;
+	if (ph == 'd' || ph == 'i')
+	{
+		temp = ft_itoa(va_arg(items, int));
+		ft_putstr_fd(temp, 1);
+		free(temp);
+	}
+	else if (ph == 'c')
+		ft_putchar_fd(va_arg(items, int), 1);
+	else if (ph == '%')
+		ft_putchar_fd('%', 1);
+}
 
 int	ft_printf(const char *template, ...)
 {
@@ -61,23 +77,23 @@ int	ft_printf(const char *template, ...)
 	int		s;
 	int		i;
 
-	ft_putstr_fd((char *) template, 1);
-	ft_putstr_fd("\n", 1);
-
+	va_start(parameters, template);
 	i = 0;
 	while (template[i])
 	{
 		s = i;
-		while (template[i] && template[i] != '%') // && ft_isvalidparam(template[i + 1]))
+		while (template[i] && template[i] != '%')
 			i++;
 		temp = ft_substr(template, s, i - s);
 		ft_putstr_fd(temp, 1);
+		if (template[i] == '%' && ft_isvalidparam(template[i + 1]))
+		{
+			ft_replace_placeholder(template[i + 1], parameters);
+			i++;
+		}
 		free(temp);
-		ft_putstr_fd("\n", 1);
 		i++;
 	}
-
-	va_start(parameters, template);
 	va_end(parameters);
 	return(0);
 }
