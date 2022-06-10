@@ -1,8 +1,0 @@
-template = ("A frase %s tem %d caractares, %d palavras e a começa com a letra %c", ptr, len, c_word, c)
-
-printf(char *template, ...)
-	contar-argumentos
-	identeficar tipo dos argumentos
-		args = malloc(1 * sizeof(char *) + 2 * sizeof(int) + 1 * sizeof(char))
-	criar lista
-	inicar lista com o número de argumentos
