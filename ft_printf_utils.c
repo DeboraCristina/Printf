@@ -1,3 +1,5 @@
+#include "ft_printf.h"
+
 int	ft_isvalidparam(char c)
 {
 	if (c == '%' || c == 'x' || c == 'X')
@@ -9,18 +11,42 @@ int	ft_isvalidparam(char c)
 	return (0);
 }
 
-int	ft_c_char(const char *template, int c)
+int	ft_print_char(int c)
 {
-	int n;
-	int i;
-
-	n = 0;
-	i = 0;
-	while(template[i])
-	{
-		if(template[i] == c && ft_isvalidparam(template[i + 1]))
-			n ++;
-		i++;
-	}
-	return (n);
+	ft_putchar_fd(c, 1);
+	return (1);
 }
+int	ft_print_hex(int placeholder, int i)
+{
+	int		len;
+	char	*s;
+
+	s = ft_tohex(i, placeholder);
+	ft_putstr_fd(s, 1);
+	len = ft_strlen(s);
+	free(s);
+	return (len);
+}
+int	ft_print_int(int i)
+{
+	char	*s;
+	int		len;
+
+	s = ft_itoa(i);
+	ft_putstr_fd(s, 1);
+	len = ft_strlen(s);
+	free(s);
+	return (len);
+}
+int	ft_print_str(char *s)
+{
+	int		len;
+
+	ft_putstr_fd(s, 1);
+	return (len);
+}
+/*
+int	ft_print_u_int()
+{
+}
+*/

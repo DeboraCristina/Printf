@@ -1,73 +1,21 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
-/*
-char	*ft_placeholder(const char *template)
+int	ft_replace_placeholder(int ph, va_list items)
 {
-	int		c;
-	int		i;
-	char	*dest;
+	int	len;
 
-	c = ft_c_char(template, '%');
-	if (!c)
-		return (NULL);
-	dest = (char *) malloc(c);
-	if (!dest)
-		return (NULL);
-	i = 0;
-	c = 0;
-	while(template[i])
-	{
-		if(template[i] == '%' && ft_isvalidparam(template[i + 1]))
-		{
-			dest[c] = template[i + 1];
-			c++;
-		}
-		i++;
-	}
-	dest[c] = '\0';
-	return (dest);
-}
-
-
-int	ft_printf(const char *template, ...)
-{
-	char	*ph;
-	char	**txt;
-	va_list	parameters;
-
-	va_start(parameters, template);
-	ph = ft_placeholder(template);
-	txt = ft_split(template, '%');
-
-	while (*txt)
-	{
-		ft_putstr_fd(*txt, 1);
-		free(*txt);
-		txt++;
-	}
-
-	printf("\n%s\n", ph);
-	free(ph);
-	va_end(parameters);
-	return (1);
-}
-*/
-void	ft_replace_placeholder(int ph, va_list items)
-{
-	char	*temp;
-
-	temp = NULL;
+	len = 0;
 	if (ph == 'd' || ph == 'i')
-	{
-		temp = ft_itoa(va_arg(items, int));
-		ft_putstr_fd(temp, 1);
-		free(temp);
-	}
+		len = ft_print_int(va_arg(items, int));
 	else if (ph == 'c')
-		ft_putchar_fd(va_arg(items, int), 1);
+		len = ft_print_char(va_arg(items, int));
 	else if (ph == '%')
-		ft_putchar_fd('%', 1);
+		len = ft_print_char('%');
+	else if (ph == 's')
+		len = ft_print_str(va_arg(items, char *));
+	else if (ph == 'x' || ph == 'X')
+		len = ft_print_hex(ph, va_arg(items, int));
+	return (len);
 }
 
 int	ft_printf(const char *template, ...)
@@ -76,9 +24,11 @@ int	ft_printf(const char *template, ...)
 	char	*temp;
 	int		s;
 	int		i;
+	int		len;
 
 	va_start(parameters, template);
 	i = 0;
+	len = 0;
 	while (template[i])
 	{
 		s = i;
@@ -86,14 +36,16 @@ int	ft_printf(const char *template, ...)
 			i++;
 		temp = ft_substr(template, s, i - s);
 		ft_putstr_fd(temp, 1);
+		len += ft_strlen(temp);
 		if (template[i] == '%' && ft_isvalidparam(template[i + 1]))
 		{
-			ft_replace_placeholder(template[i + 1], parameters);
+			len += ft_replace_placeholder(template[i + 1], parameters);
 			i++;
 		}
 		free(temp);
-		i++;
+		if (template[i])
+			i++;
 	}
 	va_end(parameters);
-	return(0);
+	return(len);
 }
