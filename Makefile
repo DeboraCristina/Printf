@@ -7,6 +7,10 @@ OBJS		=	$(SRCS:%.c=%.o)
 
 NAME		=	libftprintf.a
 
+L_PATH		=	Libft/
+
+L_NAME		=	libft.a
+
 COMPILE		=	cc
 
 FLAGS		=	-Wall -Wextra -Werror
@@ -14,20 +18,28 @@ FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -f
 
 %.c%.o:
-	@$(CC) $(FLAGS) -co $@
-
-$(NAME):	$(OBJS)
-	@ar -rc $(NAME) $(OBJS)
+	@$(COMPILE) $(FLAGS) -co $@
 
 all:	$(NAME)
 
+$(L_NAME):
+	@ make -C $(L_PATH)
+
+$(NAME): $(L_NAME)	$(OBJS)
+	@ar -rc $(NAME) $(OBJS)
+	@echo "Printf criado com sucesso!"
+
 clean:
 	@$(RM) $(OBJS)
+	@ make clean -C $(L_PATH)
 
 fclean:	clean
 	@$(RM) $(NAME)
+	@ make fclean -C $(L_PATH)
+	@echo "Printf removido por completo"
 
 re:	fclean	all
 
 .PHONY:	all	clean	fclean	re
-.SILENT:	$(OBJS)
+
+.SILENT:	$(OBJS)	$(L_NAME)	clean	fclean
