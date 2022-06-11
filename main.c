@@ -8,7 +8,6 @@ void	mymain()
 {
 	int i;
 	// char	*I;
-	char	*str;
 
 	// i = ft_printf("%% %x %X %c %s %p %d %i %u %D", 'a', "bc", "bc", 4, 4, 4);
 	// d c i % s x X -> u -> p
