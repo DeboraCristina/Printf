@@ -35,16 +35,14 @@ FLAGS	=	-Wall -Werror -Wextra
 
 RM		=	rm -f
 
-%.c%.o:
+%.o:	%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS) $(OBJS_M) $(HEADER)
 	@ar -rc $(NAME) $(OBJS) $(OBJS_M)
-	@echo "\033[1;92mLib		successfully created\033[0m"
 
 $(NAME_B):	$(OBJS) $(OBJS_B) $(OBJS_M) $(HEADER)
 	@ar -rc $(NAME) $(OBJS) $(OBJS_B) $(OBJS_M)
-	@echo "\033[1;92mLib with bonus		successfully created\033[0m"
 
 all:	$(NAME)
 
@@ -55,12 +53,9 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME) $(NAME_B)
-	@echo "\33[1;93mlibft  successfully removed\33[0m"
 
 re:	fclean all
 
 re_b:	fclean bonus
 
 .PHONY: all clean fclean re bonus
-
-.SILENT:	$(OBJS)	$(OBJS_B)	$(OBJS_M)
