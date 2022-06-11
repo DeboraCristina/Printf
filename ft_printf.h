@@ -1,8 +1,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "/home/coder/Libft/libft.h" // arrumar isso aki
-// # include "Libft/libft.h"
+# include "Libft/libft.h"
 # include <stdarg.h>
 
 int	ft_printf(const char *, ...);
