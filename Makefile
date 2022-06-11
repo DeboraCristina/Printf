@@ -17,17 +17,16 @@ FLAGS		=	-Wall -Wextra -Werror
 
 RM			=	rm -f
 
-%.c%.o:
-	@$(COMPILE) $(FLAGS) -co $@
+%.o:	%.c
+	@$(COMPILE) $(FLAGS) -c $< -o $(<:%.c=%.o)
 
 all:	$(NAME)
 
-$(L_NAME):
+$(NAME): $(OBJS)
 	@ make -C $(L_PATH)
-
-$(NAME): $(L_NAME)	$(OBJS)
+	@mv $(L_PATH)/$(L_NAME) $@
 	@ar -rc $(NAME) $(OBJS)
-	@echo "Printf criado com sucesso!"
+	@echo "\033[1;92mLibftPrintf		successfully created\033[0m"
 
 clean:
 	@$(RM) $(OBJS)
@@ -36,10 +35,8 @@ clean:
 fclean:	clean
 	@$(RM) $(NAME)
 	@ make fclean -C $(L_PATH)
-	@echo "Printf removido por completo"
+	@echo "\33[1;93mLibftPrintf	successfully removed\33[0m"
 
 re:	fclean	all
 
 .PHONY:	all	clean	fclean	re
-
-.SILENT:	$(OBJS)	$(L_NAME)	clean	fclean
