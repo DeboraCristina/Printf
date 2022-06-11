@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 02:28:38 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/08 03:54:34 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/11 13:49:35 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (s)
 		write(fd, s, ft_strlen(s));
 }
