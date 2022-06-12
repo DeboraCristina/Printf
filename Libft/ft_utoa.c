@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 02:28:38 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/11 13:56:01 by desilva          ###   ########.fr       */
+/*   Created: 2022/06/12 22:00:59 by desilva           #+#    #+#             */
+/*   Updated: 2022/06/12 22:01:49 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_utoa(unsigned int u)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	unsigned int	len;
+	char			*num;
+
+	len = ft_count_digits(u);
+	num = (char *) calloc(len + 1, sizeof(char));
+	if (!num)
+		return (NULL);
+	while (len > 0)
+	{
+		num[len - 1] = (u % 10) + '0';
+		u = u / 10;
+		len--;
+	}
+	return (num);
 }

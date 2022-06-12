@@ -27,9 +27,10 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
 
 // my little monsters
-int	ft_count_digits(int n);
+size_t	ft_count_digits(size_t n);
 char	*ft_tohex(int n, int type);
 void	ft_rev_int_tab(void *tab, int size);
+char	*ft_utoa(unsigned int u);
 
 // ctype
 int		ft_isalpha(int c);

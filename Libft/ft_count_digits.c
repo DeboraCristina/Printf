@@ -6,20 +6,18 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:03:08 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/09 19:03:50 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/12 21:07:42 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count_digits(int n)
+size_t	ft_count_digits(size_t n)
 {
-	int	c;
+	size_t	c;
 
 	c = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	while (n > 0)
 	{
 		n /= 10;
 		c++;
