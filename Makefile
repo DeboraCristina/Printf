@@ -23,18 +23,18 @@ RM			=	rm -f
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-	@ make -C $(L_PATH)
+	@ make --no-print-directory -C $(L_PATH)
 	@mv $(L_PATH)/$(L_NAME) $@
 	@ar -rc $(NAME) $(OBJS)
 	@echo "\033[1;92mLibftPrintf		successfully created\033[0m"
 
 clean:
 	@$(RM) $(OBJS)
-	@ make clean -C $(L_PATH)
+	@ make --no-print-directory clean -C $(L_PATH)
 
 fclean:	clean
 	@$(RM) $(NAME)
-	@ make fclean -C $(L_PATH)
+	@ make --no-print-directory fclean -C $(L_PATH)
 	@echo "\33[1;93mLibftPrintf	successfully removed\33[0m"
 
 re:	fclean	all
