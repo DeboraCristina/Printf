@@ -10,9 +10,3 @@ int	ft_isvalidparam(char c)
 		return (1);
 	return (0);
 }
-
-/*
-int	ft_print_u_int()
-{
-}
-*/
