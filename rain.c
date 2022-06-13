@@ -2,7 +2,7 @@
 #include "ft_printf.h"
 
 // # define P ("%s, %s %d%%%c\n%i %x %X\n", "ola", "mundo", 42, '!', 24, 427, 347);
-# define P ("%p\n", p);
+# define P ("%p %x %X\n", p , 29, 29);
 
 void	mymain()
 {
