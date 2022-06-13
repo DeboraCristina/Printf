@@ -15,6 +15,10 @@ int	ft_replace_placeholder(int ph, va_list items)
 		len = ft_print_str(va_arg(items, char *));
 	else if (ph == 'x' || ph == 'X')
 		len = ft_print_hex(ph, va_arg(items, int));
+	else if (ph == 'u')
+		len = ft_print_unint(va_arg(items, unsigned int));
+	else if (ph == 'p')
+		len = ft_print_ptr(va_arg(items, unsigned int));
 	return (len);
 }
 

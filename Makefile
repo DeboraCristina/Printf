@@ -1,7 +1,7 @@
-SRCS		=	ft_printf.c			src/ft_printf_utils.c	\
-				src/ft_print_char.c	src/ft_print_hex.c		\
-				src/ft_print_int.c	src/ft_print_str.c		\
-				# src/ft_print_u_int.c
+SRCS		=	ft_printf.c				src/ft_printf_utils.c	\
+				src/ft_print_char.c		src/ft_print_hex.c		\
+				src/ft_print_int.c		src/ft_print_str.c		\
+				src/ft_print_unint.c	src/ft_print_ptr.c
 
 OBJS		=	$(SRCS:%.c=%.o)
 
