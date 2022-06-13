@@ -5,49 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 23:09:03 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/12 23:10:13 by desilva          ###   ########.fr       */
+/*   Created: 2022/06/13 14:29:35 by desilva           #+#    #+#             */
+/*   Updated: 2022/06/13 17:35:18 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_inttohex(int i, int type)
+static void	ft_nbr2hex(unsigned long int i, int type, char *dest)
 {
 	char	n;
-	char	*l;
 
 	if (i >= 10 && i <= 15)
 	{
-		if (type >= 'A' && type <= 'Z')
+		if (ft_isupper(type))
 			n = (i + 55);
 		else
 			n = (i + 87);
 	}
 	else
 		n = (i + 48);
-	l = (char *) malloc(2);
-	if (!l)
-		return (NULL);
-	l[0] = n;
-	l[1] = '\0';
-	return (l);
+	dest[0] = n;
+	dest[1] = '\0';
 }
 
-char	*ft_tohex(int n, int type)
+char	*ft_tohex(unsigned long int n, int type)
 {
 	char	*hex;
 	char	*temp;
-	char	*res;
+	char	res[2];
 
 	hex = NULL;
 	while (n > 0)
 	{
+		ft_nbr2hex((n % 16), type, res);
 		temp = hex;
-		res = ft_inttohex((n % 16), type);
 		hex = ft_strjoin(hex, res);
 		free (temp);
-		free(res);
 		if (!hex)
 			return (NULL);
 		n = n / 16;

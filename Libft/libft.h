@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:10:17 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/12 23:10:18 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/13 17:35:38 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int		ft_lstsize(t_list *lst);
 
 // my little monsters
 size_t	ft_count_digits(size_t n);
-char	*ft_tohex(int n, int type);
-void	ft_rev_int_tab(void *tab, int size);
+int		ft_isupper(int c);
+int		ft_islower(int c);
+char	*ft_tohex(unsigned long int n, int type);
 char	*ft_utoa(unsigned int u);
+void	ft_rev_int_tab(void *tab, int size);
 
 // ctype
 int		ft_isalpha(int c);
