@@ -18,7 +18,7 @@ int	ft_replace_placeholder(int ph, va_list items)
 	else if (ph == 'u')
 		len = ft_print_unint(va_arg(items, unsigned int));
 	else if (ph == 'p')
-		len = ft_print_ptr(va_arg(items, unsigned int));
+		len = ft_print_ptr(va_arg(items, unsigned long int));
 	return (len);
 }
 
