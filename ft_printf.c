@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/13 18:32:29 by desilva           #+#    #+#             */
+/*   Updated: 2022/06/13 18:49:32 by desilva          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_replace_placeholder(int ph, va_list items)
+static int	ft_replace_placeholder(int ph, va_list items)
 {
 	int	len;
 
@@ -22,34 +34,40 @@ int	ft_replace_placeholder(int ph, va_list items)
 	return (len);
 }
 
-int	ft_printf(const char *template, ...)
+static void	ft_identify_placeholder(char *str, va_list args, int *len)
 {
-	va_list	parameters;
 	char	*temp;
 	int		s;
 	int		i;
-	int		len;
 
-	va_start(parameters, template);
 	i = 0;
-	len = 0;
-	while (template[i])
+	while (str[i])
 	{
 		s = i;
-		while (template[i] && template[i] != '%')
+		while (str[i] && str[i] != '%')
 			i++;
-		temp = ft_substr(template, s, i - s);
+		temp = ft_substr(str, s, i - s);
 		ft_putstr_fd(temp, 1);
 		len += ft_strlen(temp);
-		if (template[i] == '%' && ft_isvalidparam(template[i + 1]))
+		if (str[i] == '%' && ft_isvalidparam(str[i + 1]))
 		{
-			len += ft_replace_placeholder(template[i + 1], parameters);
+			len += ft_replace_placeholder(str[i + 1], parameters);
 			i++;
 		}
 		free(temp);
-		if (template[i])
+		if (str[i])
 			i++;
 	}
+}
+
+int	ft_printf(const char *template, ...)
+{
+	va_list	parameters;
+	int		len;
+
+	va_start(parameters, template);
+	len = 0;
+	ft_identify_placeholder(template, parameters, len);
 	va_end(parameters);
-	return(len);
+	return (len);
 }
