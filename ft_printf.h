@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:32:02 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/13 18:34:13 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/14 15:46:27 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "Libft/libft.h"
 # include <stdarg.h>
 
-int	ft_printf(const char *template, ...);
+int	ft_printf(const char *str, ...);
 
 // utils
 int	ft_isvalidparam(char c);

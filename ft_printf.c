@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 18:32:29 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/13 18:49:32 by desilva          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static int	ft_replace_placeholder(int ph, va_list items)
@@ -34,13 +22,15 @@ static int	ft_replace_placeholder(int ph, va_list items)
 	return (len);
 }
 
-static void	ft_identify_placeholder(char *str, va_list args, int *len)
+static int	ft_identify_placeholder(const char *str, va_list args)
 {
 	char	*temp;
 	int		s;
 	int		i;
+	int		len;
 
 	i = 0;
+	len = 0;
 	while (str[i])
 	{
 		s = i;
@@ -51,23 +41,23 @@ static void	ft_identify_placeholder(char *str, va_list args, int *len)
 		len += ft_strlen(temp);
 		if (str[i] == '%' && ft_isvalidparam(str[i + 1]))
 		{
-			len += ft_replace_placeholder(str[i + 1], parameters);
+			len += ft_replace_placeholder(str[i + 1], args);
 			i++;
 		}
 		free(temp);
 		if (str[i])
 			i++;
 	}
+	return (len);
 }
 
-int	ft_printf(const char *template, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	parameters;
 	int		len;
 
-	va_start(parameters, template);
-	len = 0;
-	ft_identify_placeholder(template, parameters, len);
+	va_start(parameters, str);
+	len = ft_identify_placeholder(str, parameters);
 	va_end(parameters);
 	return (len);
 }
