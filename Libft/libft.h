@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:10:17 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/13 17:35:38 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/15 01:21:40 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+// my little monsters
+int		ft_isupper(int c);
+int		ft_islower(int c);
+char	*ft_tohex(unsigned long int n, int type);
+char	*ft_utoa(unsigned int u);
+void	ft_rev_int_tab(void *tab, int size);
+
 // bonus ,-,
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
@@ -37,14 +44,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
-
-// my little monsters
-size_t	ft_count_digits(size_t n);
-int		ft_isupper(int c);
-int		ft_islower(int c);
-char	*ft_tohex(unsigned long int n, int type);
-char	*ft_utoa(unsigned int u);
-void	ft_rev_int_tab(void *tab, int size);
 
 // ctype
 int		ft_isalpha(int c);

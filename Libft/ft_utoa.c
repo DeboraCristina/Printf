@@ -6,11 +6,24 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:00:59 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/12 23:15:17 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/15 00:25:09 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+size_t	ft_count_digits(size_t n)
+{
+	size_t	c;
+
+	c = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		c++;
+	}
+	return (c);
+}
 
 char	*ft_utoa(unsigned int u)
 {
