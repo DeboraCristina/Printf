@@ -3,6 +3,9 @@
 
 void	test_integer(void)
 {
+# define RESULT_O printf("The printf original return [\e[1;94m%d\e[0m] of length.\n\n", len);
+# define RESULT_M ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+
 	int	len;
 
 	printf("\e[96m-+-+-+-+-+     Test Integer %%d and %%i     -+-+-+-+-+\n\n\n\e[0m");
@@ -10,26 +13,56 @@ void	test_integer(void)
 	ft_printf("\e[91mMy Function\e[0m\n");
 
 	len = ft_printf("{%%d negative ==> [%d]}\n", -10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M
+
 	len = ft_printf("{%%d positive ==> [%d]}\n", 10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M
+
+	len = ft_printf("{%%d overflow positive ==> [%d]}\n", 2147483647);
+	RESULT_M
+
+	len = ft_printf("{%%d overflow negative ==> [%d]}\n", -2147483648);
+	RESULT_M
+
 	len = ft_printf("{%%i negative ==> [%i]}\n", -10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M
+
 	len = ft_printf("{%%i positive ==> [%i]}\n", 10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M
+
+	len = ft_printf("{%%i overflow positive ==> [%i]}\n", 2147483647);
+	RESULT_M
+
+	len = ft_printf("{%%i overflow negative ==> [%i]}\n", -2147483648);
+	RESULT_M
 
 	printf("\n\n\n");
 
 	printf("\e[95mThe printf original\e[0m\n");
 
-	len = printf("{%%d ==> [%d]}\n", -10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
-	len = printf("{%%d ==> [%d]}\n", 10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
-	len = printf("{%%i ==> [%i]}\n", -10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
-	len = printf("{%%i ==> [%i]}\n", 10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	len = printf("{%%d negative ==> [%d]}\n", -10);
+	RESULT_O
+
+	len = printf("{%%d positive ==> [%d]}\n", 10);
+	RESULT_O
+
+	len = printf("{%%d overflow positive ==> [%d]}\n", 2147483647);
+	RESULT_O
+
+	len = printf("{%%d overflow negative ==> [%ld]}\n", -2147483648);
+	RESULT_O
+
+	len = printf("{%%i negative ==> [%i]}\n", -10);
+	RESULT_O
+
+	len = printf("{%%i positive ==> [%i]}\n", 10);
+	RESULT_O
+
+	len = printf("{%%i overflow positive ==> [%i]}\n", 2147483647);
+	RESULT_O
+
+	len = printf("{%%i overflow negative ==> [%li]}\n", -2147483648);
+	RESULT_O
 
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
