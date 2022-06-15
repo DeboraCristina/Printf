@@ -1,11 +1,11 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	test_integer(void)
-{
 # define RESULT_O printf("The printf original return [\e[1;94m%d\e[0m] of length.\n\n", len);
 # define RESULT_M ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
 
+void	test_integer(void)
+{
 	int	len;
 
 	printf("\e[96m-+-+-+-+-+     Test Integer %%d and %%i     -+-+-+-+-+\n\n\n\e[0m");
@@ -94,21 +94,27 @@ void	test_char(void)
 
 void	test_str(void)
 {
+	char	*s;
 	int	len;
 
+	s = NULL;
 	printf("\e[96m-+-+-+-+-+     Test String %%s     -+-+-+-+-+\n\n\n\e[0m");
 
 	ft_printf("\e[91mMy Function\e[0m\n");
 
 	len = ft_printf("{%%s ==> [%s]}\n", "Hello, World!");
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
+	len = ft_printf("{%%s ==> [%s]}\n", s);
+	RESULT_M 
 
 	printf("\n\n\n");
 
 	printf("\e[95mThe printf original\e[0m\n");
 
 	len = printf("{%%s ==> [%s]}\n", "Hello, World!");
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
+	len = printf("{%%s ==> [%s]}\n", s);
+	RESULT_O 
 
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
@@ -176,18 +182,22 @@ void	test_pointer(void)
 	ft_printf("\e[91mMy Function\e[0m\n");
 
 	len = ft_printf("{%%p ==> [%p]}\n", "ABC");
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
 	len = ft_printf("{%%p ==> [%p]}\n", NULL);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
+	len = ft_printf("{%%p ==> [%p]}\n", &len);
+	RESULT_M 
 
 	printf("\n\n\n");
 
 	printf("\e[95mThe printf original\e[0m\n");
 
 	len = printf("{%%p ==> [%p]}\n", "ABC");
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 	len = printf("{%%p ==> [%p]}\n", NULL);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
+	len = printf("{%%p ==> [%p]}\n", &len);
+	RESULT_O 
 
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
