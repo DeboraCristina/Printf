@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:10:17 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/15 01:21:40 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:25:52 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct s_list
 // my little monsters
 int		ft_isupper(int c);
 int		ft_islower(int c);
-char	*ft_tohex(unsigned long int n, int type);
+char	*ft_lu2hex(unsigned long int n, int type);
+char	*ft_u2hex(unsigned int n, int type);
 char	*ft_utoa(unsigned int u);
-void	ft_rev_int_tab(void *tab, int size);
+void	ft_rev_tab(void *t, int size);
 
 // bonus ,-,
 t_list	*ft_lstnew(void *content);

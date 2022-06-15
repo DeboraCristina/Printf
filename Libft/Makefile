@@ -15,9 +15,9 @@ SRCS_B	=	ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	\
 			ft_lstlast.c	ft_lstadd_back.c	ft_lstdelone.c	\
 			ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
 
-SRCS_M	=	ft_tohex.c		ft_rev_int_tab.c	\
+SRCS_M	=	ft_isupper.c		ft_rev_tab.c	\
 			ft_utoa.c			ft_islower.c	\
-			ft_isupper.c		\
+			ft_u2hex.c			ft_lu2hex.c		\
 
 OBJS	=	$(SRCS:%.c=%.o)
 
@@ -42,11 +42,9 @@ RM		=	rm -f
 
 $(NAME):	$(OBJS) $(OBJS_M) $(HEADER)
 	@ar -rc $(NAME) $(OBJS) $(OBJS_M)
-	@echo "\033[1;92mLib		successfully created\033[0m"
 
 $(NAME_B):	$(OBJS) $(OBJS_B) $(OBJS_M) $(HEADER)
 	@ar -rc $(NAME) $(OBJS) $(OBJS_B) $(OBJS_M)
-	@echo "\033[1;92mLib with bonus		successfully created\033[0m"
 
 all:	$(NAME)
 
@@ -57,7 +55,6 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME) $(NAME_B)
-	@echo "\33[1;93mlibft  successfully removed\33[0m"
 
 re:	fclean all
 
