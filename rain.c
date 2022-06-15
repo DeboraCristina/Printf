@@ -227,8 +227,17 @@ void	test_unsigned(void)
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
 
+void	other_test(void)
+{
+	ft_printf("%X\n", 28);
+	printf("%X\n", -28);
+	ft_printf("%X\n", -28);
+	printf("%lu\n", -28/16);
+}
+
 int	main(void)
 {
+# ifdef TEST
 	switch (TEST)
 	{
 		case 1:
@@ -255,5 +264,8 @@ int	main(void)
 		default:
 			printf("(nill)\n");
 	}
+#else
+	other_test();
+#endif
 	return (0);
 }
