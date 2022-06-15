@@ -227,12 +227,20 @@ void	test_unsigned(void)
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
 
-void	other_test(void)
+void	test_resume(void)
 {
-	ft_printf("%X\n", 28);
-	printf("%X\n", -28);
-	ft_printf("%X\n", -28);
-	printf("%lu\n", -28/16);
+	char	*s;
+
+	s = "A de amor, ...";
+	ft_printf("01 - {%i}\n", -28);
+	ft_printf("02 - {%d}\n", -28);
+	ft_printf("03 - {%u}\n", -28);
+	ft_printf("04 - {%c}\n", 'a');
+	ft_printf("05 - {%s}\n", s);
+	ft_printf("06 - {%p}\n", s);
+	ft_printf("07 - {%x}\n", 28);
+	ft_printf("08 - {%X}\n", -28);
+	ft_printf("09 - {%%}\n");
 }
 
 int	main(void)
@@ -265,7 +273,7 @@ int	main(void)
 			printf("(nill)\n");
 	}
 #else
-	other_test();
+	test_resume();
 #endif
 	return (0);
 }
