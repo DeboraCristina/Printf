@@ -6,7 +6,7 @@
 /*   By: desilva <dede-2231@hotmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:30:42 by desilva           #+#    #+#             */
-/*   Updated: 2022/06/15 02:18:55 by desilva          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:28:07 by desilva          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_print_hex(int placeholder, int i)
 	int		len;
 	char	*s;
 
-	s = ft_tohex(i, placeholder);
+	s = ft_u2hex(i, placeholder);
 	ft_putstr_fd(s, 1);
 	len = ft_strlen(s);
 	if (s)
