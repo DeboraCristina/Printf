@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 # define RESULT_O printf("The printf original return [\e[1;94m%d\e[0m] of length.\n\n", len);
 # define RESULT_M ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
@@ -149,26 +150,32 @@ void	test_hex(void)
 	ft_printf("\e[91mMy Function\e[0m\n");
 
 	len = ft_printf("{%%x ==> [%x]}\n", 28);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
 	len = ft_printf("{%%X ==> [%X]}\n", 28);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
 	len = ft_printf("{%%x ==> [%x]}\n", -28);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
 	len = ft_printf("{%%X ==> [%X]}\n", -28);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
+	len = ft_printf("test 01 {%%x ==> [%x]}\n", 0);
+	RESULT_M 
+	len = ft_printf("test 25{%%x ==> [%x]}\n", LONG_MIN);
+	RESULT_M 
+	len = ft_printf("test 29{%X %X %X %X %X %X %X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	RESULT_M 
 
 	printf("\n\n\n");
 
 	printf("\e[95mThe printf original\e[0m\n");
 
 	len = printf("{%%x ==> [%x]}\n", 28);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 	len = printf("{%%X ==> [%X]}\n", 28);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 	len = printf("{%%x ==> [%x]}\n", -28);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 	len = printf("{%%X ==> [%X]}\n", -28);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
@@ -211,18 +218,24 @@ void	test_unsigned(void)
 	ft_printf("\e[91mMy Function\e[0m\n");
 
 	len = ft_printf("{%%u ==> [%u]}\n", 10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
 	len = ft_printf("{%%u ==> [%u]}\n", -10);
-	ft_printf("My Function return [\e[1;94m%d\e[0m] of length.\n\n", len);
+	RESULT_M 
+	len = ft_printf("{%%u ==> [%u]}\n", 0);
+	RESULT_M 
+	len = ft_printf("{%%u ==> [%u]}\n", LONG_MIN);
+	RESULT_M 
+	len = ft_printf(" %u %u %u %u %u %u %u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	RESULT_M 
 
 	printf("\n\n\n");
 
 	printf("\e[95mThe printf original\e[0m\n");
 
 	len = printf("{%%u ==> [%u]}\n", 10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 	len = printf("{%%u ==> [%u]}\n", -10);
-	printf("The printf original return [\e[1;94m%d\e[0m] of length.\n", len);
+	RESULT_O 
 
 	printf("\e[96m\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\e[0m");
 }
@@ -241,6 +254,102 @@ void	test_resume(void)
 	ft_printf("07 - {%x}\n", 28);
 	ft_printf("08 - {%X}\n", -28);
 	ft_printf("09 - {%%}\n");
+	ft_printf("\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%c%%\n", \
+			'A', \
+			"42", \
+			42, \
+			42 ,\
+			42 , \
+			42, \
+			42, \
+			'B', \
+			"-42", \
+			-42, \
+			-42 ,\
+			-42 ,\
+			-42, \
+			42, \
+			'C', \
+			"0", \
+			0, \
+			0 ,\
+			0 ,\
+			0, \
+			42, \
+			0);
+	printf("********************\n\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%%%c\n\
+			%%%s\n\
+			%%%d\n\
+			%%%i\n\
+			%%%u\n\
+			%%%x\n\
+			%%%X\n\
+			%%%%\n\
+			%c%%\n", \
+			'A', \
+			"42", \
+			42, \
+			42 ,\
+			42 , \
+			42, \
+			42, \
+			'B', \
+			"-42", \
+			-42, \
+			-42 ,\
+			-42 ,\
+			-42, \
+			42, \
+			'C', \
+			"0", \
+			0, \
+			0 ,\
+			0 ,\
+			0, \
+			42, \
+			0);
 }
 
 int	main(void)
